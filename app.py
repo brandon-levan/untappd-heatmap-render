@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-
+import os
 import folium
 
 app = Flask(__name__)
@@ -16,5 +16,8 @@ def render_the_map():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Get port from environment variable (Render sets PORT)
+    port = int(os.environ.get('PORT', 8000))
+    # Use 0.0.0.0 to bind to all available network interfaces
+    app.run(host='0.0.0.0', port=port, debug=False)
     
